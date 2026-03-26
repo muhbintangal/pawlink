@@ -1,42 +1,43 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
-// 1. Halaman Home
+use App\Http\Controllers\User\PetController;
+use App\Http\Controllers\User\AdoptionController;
+use App\Http\Controllers\User\DonationController;
+use App\Http\Controllers\User\EduCenterController;
+Route::get('/', [PetController::class, 'index']);
 Route::get('/', function () {
     return view('home'); 
-})->name('home');
+});
 
-// 2. Halaman About
 Route::get('/about', function () {
     return view('about.index');
-})->name('about');
+});
 
-// 3. Halaman Adoption (Diubah ke view langsung)
-Route::get('/adoption', function () {
-    return view('adoption.index'); // Pastikan file ini ada di resources/views/adoption/index.blade.php
-})->name('adoption.index');
+Route::get('/adoption', [PetController::class, 'index']);
+
+Route::get('/donation', function () {
+    return view('donation.index');
+});
+
+Route::get('/edu', [EduCenterController::class, 'index'])->name('edu.index');
+
+Route::get('/edu/{id}', [EduCenterController::class, 'show'])->name('edu.show');
+
+Route::get('/contact', function () {
+    return view('contact.index');
+});
+
+Route::get('/pets', [PetController::class, 'index']);
+Route::get('/pets/{id}', [PetController::class, 'show']);
+
+Route::post('/adopt', [AdoptionController::class, 'store']);
+Route::post('/donate', [DonationController::class, 'store']);
 
 Route::get('/adoption/form', function () {
     return view('adoption.form');
-})->name('adoption.form');
+});
 
-// 4. Halaman Edu Center
-Route::get('/edu', function () {
-    return view('edu.index'); // Pastikan file ini ada
-})->name('edu.index');
+// Pastikan ada bagian ->name('pets.index') di akhir rute
+Route::get('/pets', [PetController::class, 'index'])->name('pets.index');
 
-// 5. Halaman Donation
-Route::get('/donation', function () {
-    return view('donation.index');
-})->name('donation.index');
-
-// 6. Halaman Contact
-Route::get('/contact', function () {
-    return view('contact.index');
-})->name('contact');
-
-// 7. Halaman Pets (Halaman list hewan, diarahkan ke view)
-Route::get('/pets', function () {
-    return view('pets.index');
-})->name('pets.index');
+Route::post('/proses-donasi', [DonationController::class, 'store'])->name('donasi.store');
