@@ -48,42 +48,25 @@
 <div class="max-w-7xl mx-auto px-6 py-10 grid md:grid-cols-4 gap-6">
 
 @foreach ($pets as $pet)
-    <div class="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
-
-        <!-- IMAGE -->
-        <div class="relative">
-            <img src="{{ $pet->image ?: 'https://via.placeholder.com/300' }}"
-                 class="w-full h-48 object-cover">
-
-            <span class="absolute top-3 right-3 text-xs px-3 py-1 rounded-full
-                {{ $pet->status == 'urgent' ? 'bg-red-100 text-red-600' : 'bg-green-100 text-green-600' }}">
-                {{ $pet->status == 'urgent' ? 'Urgent' : 'Ready to Adopt' }}
-            </span>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden group hover:shadow-xl transition-all">
+        <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=500&q=80" class="w-full h-48 object-cover">
+        <div class="p-6">
+            <h3 class="font-bold text-xl">Buddy</h3>
+            <p class="text-slate-500 text-sm">Golden Retriever • Jantan</p>
+            <a href="#" class="mt-4 block text-center bg-orange-500 text-white py-2 rounded-xl font-bold">Lihat Detail</a>
         </div>
-
-        <!-- CONTENT -->
-        <div class="p-4">
-            <h3 class="font-bold text-lg">{{ $pet->name }}</h3>
-
-            <p class="text-sm text-gray-500">
-                {{ $pet->type }} • {{ $pet->gender }}
-            </p>
-
-            <p class="text-sm text-gray-500 mt-1">
-                {{ $pet->age }} tahun
-            </p>
-
-            <p class="text-sm text-gray-500">
-                {{ $pet->location ?? 'Jakarta' }}
-            </p>
-
-            <a href="/pets/{{ $pet->id }}"
-               class="block mt-4 text-orange-500 text-sm font-semibold">
-               Lihat Detail →
-            </a>
-        </div>
-
     </div>
+
+    <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden group hover:shadow-xl transition-all">
+        <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=500&q=80" class="w-full h-48 object-cover">
+        <div class="p-6">
+            <h3 class="font-bold text-xl">Milo</h3>
+            <p class="text-slate-500 text-sm">Domestic Cat • Betina</p>
+            <a href="#" class="mt-4 block text-center bg-orange-500 text-white py-2 rounded-xl font-bold">Lihat Detail</a>
+        </div>
+    </div>
+</div>
 @endforeach
 
 </div>
